@@ -13,7 +13,9 @@ object Main {
     val codeLoader: Option[CodeLoader] = CodeLoader.create(FileCodeLoaderType)
     val contents = codeLoader match {
       case Some(loader) => loader.loadCode(filename)
-      case None => println(contentsUnavailableMessage)
+      case None =>
+        println(contentsUnavailableMessage)
+        System.exit(1)
     }
   }
 

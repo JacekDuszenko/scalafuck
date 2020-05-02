@@ -5,8 +5,6 @@ import com.jacekduszenko.loader.impl.network.NetworkCodeLoader
 
 trait CodeLoader {
   def loadCode(a: String): String
-
-
 }
 
 object CodeLoader {
