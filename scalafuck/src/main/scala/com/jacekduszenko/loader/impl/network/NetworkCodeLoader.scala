@@ -1,4 +1,4 @@
-package com.jacekduszenko.loader.network
+package com.jacekduszenko.loader.impl.network
 
 import com.jacekduszenko.loader.CodeLoader
 
