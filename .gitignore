@@ -1,2 +1,6 @@
+scalafuck/target
+scalafuck/.idea
+scalafuck/*.iml
+target/
 *.class
 *.log
