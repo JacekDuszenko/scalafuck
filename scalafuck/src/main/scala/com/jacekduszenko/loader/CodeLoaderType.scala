@@ -1,8 +1,6 @@
 package com.jacekduszenko.loader
 
-sealed trait CodeLoaderType {
-  def equals(that: Any): Boolean = that == this
-}
+sealed trait CodeLoaderType
 
 case object FileCodeLoaderType extends CodeLoaderType
 
