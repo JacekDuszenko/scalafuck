@@ -1,9 +1,11 @@
 package com.jacekduszenko.interpreter.impl
 
 import com.jacekduszenko.interpreter.BrainfuckInterpreter
+import com.jacekduszenko.model.BrainfuckToken
 
-class BrainfuckInterpreterImpl extends BrainfuckInterpreter {
+case class BrainfuckInterpreterImpl() extends BrainfuckInterpreter {
   override def initializeMemory(): Unit = ???
 
-  override def interpretCode(code: String): Unit = ???
+  override def interpret(): Unit = ???
+
 }
