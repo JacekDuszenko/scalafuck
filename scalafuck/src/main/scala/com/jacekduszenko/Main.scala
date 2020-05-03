@@ -8,13 +8,17 @@ object Main {
   val correctNumberOfArgs = 1
   val usageErrorMessage = "USAGE: scala Main BRAINFUCK_FILE"
   val contentsUnavailableMessage = "contents unavailable, exiting..."
+  val standardMemorySize = 30000
 
   def main(args: Array[String]): Unit = {
     assert(isArgsNumberCorrect(args), usageErrorMessage)
+
     val filename = args.head
     val codeLoader: Option[CodeLoader] = CodeLoader.create(FileCodeLoaderType)
     val code = loadCode(filename, codeLoader)
-    BrainfuckInterpreterImpl(code).interpret()
+    val interpreter = BrainfuckInterpreterImpl(standardMemorySize)
+
+    interpreter.interpret(code)
   }
 
   private def loadCode(filename: String, codeLoader: Option[CodeLoader]): String = {

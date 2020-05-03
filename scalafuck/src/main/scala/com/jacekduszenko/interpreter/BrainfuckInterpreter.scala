@@ -1,13 +1,19 @@
 package com.jacekduszenko.interpreter
 
-import com.jacekduszenko.model.BrainfuckToken
+import com.jacekduszenko.model._
 
 trait BrainfuckInterpreter {
-  def initializeMemory(): Unit
 
-  def interpret(): Unit
+  def interpret(code: String): Unit
 
-  def fromString(code: String): List[BrainfuckToken] = (code toList).map {
-    case
+  protected def fromString(code: String): List[BrainfuckToken] = code.toList.map {
+    case '>' => IncrementPointer
+    case '<' => DecrementPointer
+    case '+' => IncrementValue
+    case '-' => DecrementPointer
+    case '.' => PrintChar
+    case ',' => GetChar
+    case '[' => JumpZero
+    case ']' => JumpBack
   }
 }
