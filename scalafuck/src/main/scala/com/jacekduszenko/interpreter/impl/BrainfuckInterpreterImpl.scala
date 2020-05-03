@@ -1,15 +1,16 @@
 package com.jacekduszenko.interpreter.impl
 
 import com.jacekduszenko.interpreter.BrainfuckInterpreter
-import com.jacekduszenko.interpreter.impl.BrainfuckInterpreterImpl.zeroByte
+import com.jacekduszenko.interpreter.impl.BrainfuckInterpreterImpl.{defaultMemorySize, zeroByte}
 import com.jacekduszenko.model.{BrainfuckToken, JumpBack, JumpZero}
 
 object BrainfuckInterpreterImpl {
+  private val defaultMemorySize = 30000
   private val zero: Int = 0
   private val zeroByte: Byte = zero.toByte
 }
 
-case class BrainfuckInterpreterImpl(memorySize: Int) extends BrainfuckInterpreter {
+case class BrainfuckInterpreterImpl(memorySize: Int = defaultMemorySize) extends BrainfuckInterpreter {
   private var runtimeState: RuntimeState = (zeroFilledMemory, 0)
 
   private def zeroFilledMemory: InterpreterMemory = List.fill(memorySize)(zeroByte)
@@ -43,7 +44,7 @@ case class BrainfuckInterpreterImpl(memorySize: Int) extends BrainfuckInterprete
   }
 
   def findLoopCode(i: PointerPosition, tokens: List[BrainfuckToken]): List[BrainfuckToken] = {
-    tokens.drop(i).takeWhile(tkn => tkn != JumpBack)
+    tokens.drop(i + 1).takeWhile(tkn => tkn != JumpBack)
   }
 }
 
