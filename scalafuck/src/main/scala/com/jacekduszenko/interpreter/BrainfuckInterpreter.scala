@@ -10,7 +10,7 @@ trait BrainfuckInterpreter {
     case '>' => IncrementPointer
     case '<' => DecrementPointer
     case '+' => IncrementValue
-    case '-' => DecrementPointer
+    case '-' => DecrementValue
     case '.' => PrintChar
     case ',' => GetChar
     case '[' => JumpZero
