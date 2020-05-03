@@ -43,7 +43,7 @@ case class BrainfuckInterpreterImpl(memorySize: Int) extends BrainfuckInterprete
   }
 
   def findLoopCode(i: PointerPosition, tokens: List[BrainfuckToken]): List[BrainfuckToken] = {
-    tokens.drop(i).takeWhile((tkn => tkn != JumpBack))
+    tokens.drop(i).takeWhile(tkn => tkn != JumpBack)
   }
 }
 
