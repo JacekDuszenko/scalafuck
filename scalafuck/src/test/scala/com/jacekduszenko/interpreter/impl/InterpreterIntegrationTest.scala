@@ -1,6 +1,6 @@
 package com.jacekduszenko.interpreter.impl
 
-import org.scalatest.{BeforeAndAfterEach, FunSuite}
+import org.scalatest.{BeforeAndAfterEach, FunSuite, TestSuiteMixin}
 
 class InterpreterIntegrationTest extends FunSuite with BeforeAndAfterEach {
 
