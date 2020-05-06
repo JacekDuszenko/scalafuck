@@ -17,7 +17,6 @@ class HelloWorldTest extends BaseSystemTest {
   describe("Hello world interpreting test") {
     it("Should interpret hello world correctly") {
       val helloWorldStringInput = fetchBrainfuckFromFile(helloWorldResource)
-      println(helloWorldStringInput)
       interpreter.interpret(helloWorldStringInput)
     }
   }

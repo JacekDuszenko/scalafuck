@@ -26,13 +26,17 @@ case class BrainfuckInterpreterImpl(memorySize: Int = defaultMemorySize) extends
     }
   }
 
-  private def interpretToken(tokens: List[BrainfuckToken], i: PointerPosition): Unit = {
-    if (isLoopStart(tokens, i))
-      executeLoop(tokens, i)
-    else runtimeState = tokens(i).makeAction(i, tokens, runtimeState)
+  private def interpretToken(tokens: List[BrainfuckToken], tokenIndex: PointerPosition): Unit = {
+    if (isTokenALoopStart(tokens, tokenIndex))
+      executeLoop(tokens, tokenIndex)
+    else updateRuntimeState(tokens, tokenIndex)
   }
 
-  private def isLoopStart(tokens: List[BrainfuckToken], i: PointerPosition) = tokens(i) == JumpZero
+  private def updateRuntimeState(tokens: List[BrainfuckToken], tokenIndex: PointerPosition): Unit = {
+    runtimeState = tokens(tokenIndex).makeAction(tokenIndex, tokens, runtimeState)
+  }
+
+  private def isTokenALoopStart(tokens: List[BrainfuckToken], i: PointerPosition) = tokens(i) == JumpZero
 
   private def executeLoop(tokens: List[BrainfuckToken], i: PointerPosition): Unit = {
     while (getValueAtCurrentPosition != 0)
