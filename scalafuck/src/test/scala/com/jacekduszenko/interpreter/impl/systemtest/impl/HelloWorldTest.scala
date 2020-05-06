@@ -1,6 +1,6 @@
-package com.jacekduszenko.interpreter.impl.systemtest
+package com.jacekduszenko.interpreter.impl.systemtest.impl
 
-import com.jacekduszenko.interpreter.impl.systemtest.HelloWorldTest.helloWorldResource
+import com.jacekduszenko.interpreter.impl.systemtest.BaseSystemTest
 import org.scalatest.time.{Seconds, Span}
 
 import scala.io.Source
