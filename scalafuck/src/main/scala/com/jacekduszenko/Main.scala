@@ -2,36 +2,39 @@ package com.jacekduszenko
 
 import com.jacekduszenko.interpreter.impl.BrainfuckInterpreterImpl
 import com.jacekduszenko.loader.{CodeLoader, FileCodeLoaderType}
+import com.jacekduszenko.model.exception.WrongUsageException
+
+import scala.util.{Failure, Success, Try}
 
 
 object Main {
   val correctNumberOfArgs = 1
   val usageErrorMessage = "USAGE: scala Main BRAINFUCK_FILE"
   val contentsUnavailableMessage = "contents unavailable, exiting..."
-  val standardMemorySize = 30000
+  val runtimeErrorMessage = "Interpreter failed with error"
 
   def main(args: Array[String]): Unit = {
     assert(isArgsNumberCorrect(args), usageErrorMessage)
-
     val filename = args.head
     val codeLoader: Option[CodeLoader] = CodeLoader.create(FileCodeLoaderType)
-    val code = loadCode(filename, codeLoader)
-    val interpreter = BrainfuckInterpreterImpl(standardMemorySize)
+    val interpreter = new BrainfuckInterpreterImpl
 
-    interpreter.interpret(code)
-  }
-
-  private def loadCode(filename: String, codeLoader: Option[CodeLoader]): String = {
-    codeLoader match {
-      case Some(loader) => loader.loadCode(filename)
-      case None => abortWithError(usageErrorMessage)
+    loadCode(filename, codeLoader) match {
+      case Success(tokens) => Try(interpreter.interpret(tokens))
+      case Failure(e) => abortWithError(e.getMessage)
     }
   }
 
-  private def abortWithError(msg: String): String = {
+  private def loadCode(filename: String, codeLoader: Option[CodeLoader]): Try[String] = {
+    codeLoader match {
+      case Some(loader) => Success(loader.loadCode(filename))
+      case None => Failure(new WrongUsageException)
+    }
+  }
+
+  private def abortWithError(msg: String): Unit = {
     println(msg)
     System.exit(1)
-    """ERROR"""
   }
 
   private def isArgsNumberCorrect(args: Array[String]): Boolean = args.length == correctNumberOfArgs
