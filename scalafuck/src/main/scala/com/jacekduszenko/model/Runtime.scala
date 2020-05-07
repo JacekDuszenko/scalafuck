@@ -35,7 +35,7 @@ class Runtime(private var pointerPosition: Int = zero, val memorySize: Int = def
   }
 
   def outputByteAtPointer(): Unit = {
-    print(memory(pointerPosition))
+    print(memory(pointerPosition).toChar)
   }
 
   def inputByteAtPointer(): Unit = {
