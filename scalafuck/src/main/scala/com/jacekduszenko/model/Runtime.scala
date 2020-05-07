@@ -45,4 +45,8 @@ class Runtime(private var pointerPosition: Int = zero, val memorySize: Int = def
   def isValueAtPointerZero: Boolean = {
     memory(pointerPosition) == 0
   }
+
+  def isValueAtPointerNonZero: Boolean = {
+    !isValueAtPointerZero
+  }
 }

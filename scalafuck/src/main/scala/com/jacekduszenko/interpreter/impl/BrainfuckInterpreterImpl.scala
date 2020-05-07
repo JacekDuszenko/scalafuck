@@ -19,11 +19,10 @@ class BrainfuckInterpreterImpl extends BrainfuckInterpreter {
         case '.' => state.outputByteAtPointer()
         case ',' => state.inputByteAtPointer()
         case '[' => if (state.isValueAtPointerZero) jump(JumpForward, code)
-        case ']' => jump(JumpBack, code)
+        case ']' => if (state.isValueAtPointerNonZero) jump(JumpBack, code)
         case _ => throw new WrongSyntaxException()
       }
       programCounter += 1
-      println(programCounter)
     }
   }
 
