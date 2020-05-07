@@ -1,5 +1,3 @@
 package com.jacekduszenko.model.exception
 
-class WrongUsageException extends Exception {
-
-}
+class WrongUsageException extends Exception {}

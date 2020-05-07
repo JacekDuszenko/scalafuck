@@ -3,6 +3,8 @@ package com.jacekduszenko.model
 import com.jacekduszenko.model.RuntimeState.{defaultMemorySize, zero, zeroByte}
 import com.jacekduszenko.model.model.InterpreterMemory
 
+import scala.io.StdIn
+
 
 object RuntimeState {
   private val defaultMemorySize = 30000
@@ -27,5 +29,13 @@ class RuntimeState(private var pointerPosition: Int = zero, val memorySize: Int 
 
   def decreasePointerValue(): Unit = {
     memory.updated(pointerPosition, memory(pointerPosition) - 1)
+  }
+
+  def outputByteAtPointer(): Unit = {
+    print(memory(pointerPosition))
+  }
+
+  def inputByteAtPointer(): Unit = {
+    memory.updated(pointerPosition, StdIn.readLine.toByte)
   }
 }

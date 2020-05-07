@@ -15,11 +15,11 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     assert(isArgsNumberCorrect(args), usageErrorMessage)
+
     val filename = args.head
-    val codeLoader: Option[CodeLoader] = CodeLoader.create(FileCodeLoaderType)
     val interpreter = new BrainfuckInterpreterImpl
 
-    loadCode(filename, codeLoader) match {
+    loadCode(filename, CodeLoader.create(FileCodeLoaderType)) match {
       case Success(tokens) => Try(interpreter.interpret(tokens))
       case Failure(e) => abortWithError(e.getMessage)
     }

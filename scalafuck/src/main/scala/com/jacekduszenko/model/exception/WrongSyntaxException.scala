@@ -1,5 +1,3 @@
 package com.jacekduszenko.model.exception
 
-class WrongSyntaxException extends Exception {
-
-}
+class WrongSyntaxException extends Exception {}
