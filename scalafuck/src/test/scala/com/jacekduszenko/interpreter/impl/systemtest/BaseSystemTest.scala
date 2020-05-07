@@ -9,5 +9,5 @@ abstract class BaseSystemTest extends FunSpec with BeforeAndAfterEach with TimeL
 
   override val defaultTestSignaler: Signaler = new ThreadKiller()
 
-  protected val interpreter: BrainfuckInterpreter = BrainfuckInterpreterImpl()
+  protected val interpreter: BrainfuckInterpreter = new BrainfuckInterpreterImpl()
 }

@@ -1,5 +1,7 @@
 package com.jacekduszenko.model
 
+import scala.collection.mutable.ArrayBuffer
+
 package object model {
-  type InterpreterMemory = List[Byte]
+  type InterpreterMemory = ArrayBuffer[Byte]
 }
